@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Md Rokibul Hasan | n8n &amp; AI Automation</title>
+<meta name="description" content="n8n developer and AI automation engineer. Workflows that connect documents, APIs, LLMs and business tools.">
+<style>
+  :root {
+    --bg: #F2F5F3;
+    --ink: #12222A;
+    --muted: #4F6169;
+    --line: #C9D5D1;
+    --accent: #0B6E6E;
+    --flag: #B3261E;
+    --panel: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  a { color: var(--accent); }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.15; margin: 0; }
+  h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); letter-spacing: -0.02em; }
+  h2 { font-size: 1.8rem; margin-bottom: 24px; }
+  h3 { font-size: 1.35rem; }
+  p { margin: 0 0 14px; max-width: 68ch; }
+
+  header.top { padding: 20px 0; border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.top strong { font-family: Georgia, serif; font-size: 1.1rem; }
+  nav a { margin-left: 20px; text-decoration: none; color: var(--ink); }
+  nav a:hover { color: var(--accent); }
+
+  .hero { padding: 72px 0 56px; }
+  .hero p.lead { font-size: 1.25rem; color: var(--muted); margin: 20px 0 28px; }
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: 6px;
+    background: var(--ink); color: #fff; text-decoration: none; font-weight: 600;
+  }
+  .btn.alt { background: transparent; color: var(--ink); border: 2px solid var(--ink); margin-left: 10px; }
+
+  /* Hero flow: the real stages of the Contract Clause Risk Flagger workflow */
+  .flow { margin-top: 48px; overflow-x: auto; padding-bottom: 8px; }
+  .flow ol { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; min-width: 760px; }
+  .flow li {
+    background: var(--panel); border: 2px solid var(--ink); border-radius: 10px;
+    padding: 10px 12px; font-size: 0.85rem; font-weight: 600; text-align: center; white-space: nowrap;
+  }
+  .flow li.ai { border-color: var(--accent); color: var(--accent); }
+  .flow li.alert { border-color: var(--flag); color: var(--flag); }
+  .flow li + li { margin-left: 28px; position: relative; }
+  .flow li + li::before {
+    content: ""; position: absolute; left: -28px; top: 50%; width: 28px; height: 2px; background: var(--ink);
+  }
+  .flow figcaption, .caption { font-size: 0.9rem; color: var(--muted); margin-top: 12px; }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 28px; }
+  .services h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .services p { color: var(--muted); font-size: 0.97rem; margin: 0; }
+
+  .project { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 28px; margin-bottom: 28px; }
+  .project .sub { color: var(--muted); margin: 6px 0 20px; }
+  .project img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; display: block; }
+  .project dl { margin: 22px 0 0; display: grid; grid-template-columns: 110px 1fr; gap: 10px 16px; }
+  .project dt { font-weight: 700; }
+  .project dd { margin: 0; }
+  .sample { background: var(--bg); border-left: 4px solid var(--flag); padding: 12px 16px; margin-top: 22px; font-size: 0.95rem; }
+  .links { margin-top: 22px; display: flex; gap: 18px; flex-wrap: wrap; }
+  .tbc { border-style: dashed; color: var(--muted); }
+
+  footer { padding: 40px 0 56px; border-top: 1px solid var(--line); }
+  footer ul { list-style: none; padding: 0; margin: 0 0 20px; }
+  footer li { margin-bottom: 6px; }
+
+  @media (max-width: 560px) {
+    .project dl { grid-template-columns: 1fr; gap: 2px; }
+    .project dd { margin-bottom: 12px; }
+    nav a { margin: 0 14px 0 0; }
+    .btn.alt { margin: 10px 0 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <strong>Md Rokibul Hasan</strong>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <h1>I build n8n workflows that turn documents into decisions.</h1>
+    <p class="lead">n8n developer and AI automation engineer. I connect LLMs, APIs, webhooks and business tools into workflows that run on their own.</p>
+    <a class="btn" href="#contact">Hire me</a>
+    <a class="btn alt" href="#work">See my work</a>
+
+    <figure class="flow" aria-label="Stages of the Contract Clause Risk Flagger workflow" style="margin-left:0;margin-right:0;">
+      <ol>
+        <li>Webhook upload</li>
+        <li>Virus scan</li>
+        <li>Text extraction</li>
+        <li>Language check</li>
+        <li class="ai">LLM clause analysis</li>
+        <li>Risk score</li>
+        <li>Report to Drive</li>
+        <li class="alert">Gmail alert</li>
+      </ol>
+      <figcaption>One real workflow from my work below: a contract goes in, a risk report comes out.</figcaption>
+    </figure>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+
+      <article class="project">
+        <h3>Contract Clause Risk Flagger</h3>
+        <p class="sub">An API that reads a contract, scores the risk of each clause, and alerts you when the risk is high.</p>
+
+        <img src="images/contract-clause-risk-flagger.png" alt="n8n canvas showing the 35-node Contract Clause Risk Flagger workflow, from the upload webhook to the final response">
+        <p class="caption">The full workflow in n8n.</p>
+
+        <dl>
+          <dt>Problem</dt>
+          <dd>Reviewing contracts by hand is slow, and risky clauses are easy to miss.</dd>
+          <dt>What it does</dt>
+          <dd>Receives a contract through a webhook, extracts and cleans the text, detects the language and translates to English when needed, pulls out key details such as type, parties, dates and jurisdiction, then splits the contract into clauses. An LLM rates each clause, a scoring step calculates the overall risk, and the result is saved as an HTML report in Google Drive, written to an audit log, and returned as a JSON response. A Gmail alert goes out for HIGH or CRITICAL results.</dd>
+          <dt>Built with</dt>
+          <dd>n8n, Groq LLM, Google Drive, Gmail, webhooks, REST APIs, JavaScript, JSON</dd>
+        </dl>
+
+        <div class="sample">
+          <strong>Sample test run:</strong> 9 clauses analyzed, overall risk CRITICAL (score 88.33). The highest-risk clause was Limitation of Liability. This is one test execution, shown to demonstrate the output format.
+        </div>
+
+        <div class="links">
+          <!-- TO BE CONFIRMED: replace # with the real demo video link and GitHub link, or delete these two lines -->
+          <a href="#">Demo video (TO BE CONFIRMED)</a>
+          <a href="#">GitHub (TO BE CONFIRMED)</a>
+        </div>
+      </article>
+
+      <!-- TO BE CONFIRMED: copy the <article> above for each new project. Only write what is true and tested. -->
+      <article class="project tbc">
+        <h3>Project 2: TO BE CONFIRMED</h3>
+        <p class="sub">Name, one-line summary, screenshot, tools and demo link to be added.</p>
+      </article>
+
+      <article class="project tbc">
+        <h3>Project 3: TO BE CONFIRMED</h3>
+        <p class="sub">Name, one-line summary, screenshot, tools and demo link to be added.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h2>What I can build for you</h2>
+      <div class="services">
+        <div>
+          <h3>n8n workflow automation</h3>
+          <p>End-to-end workflows with webhooks, conditional logic and error-aware design.</p>
+        </div>
+        <div>
+          <h3>LLM integration</h3>
+          <p>Structured AI outputs in JSON so the rest of your automation can rely on them.</p>
+        </div>
+        <div>
+          <h3>API and webhook integration</h3>
+          <p>Connect your tools through REST APIs, Google Drive, Gmail and more.</p>
+        </div>
+        <div>
+          <h3>Document processing and reporting</h3>
+          <p>Extract, analyze and turn documents into clear reports and alerts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk about your workflow</h2>
+    <ul>
+      <li>Email: <a href="mailto:rokibulhasan121890@gmail.com">rokibulhasan121890@gmail.com</a></li>
+      <li>LinkedIn: <a href="https://linkedin.com/in/md-rokibul-hasan-174a14210">linkedin.com/in/md-rokibul-hasan-174a14210</a></li>
+      <li>GitHub: <a href="https://github.com/rakib1890">github.com/rakib1890</a></li>
+    </ul>
+    <p class="caption">&copy; Md Rokibul Hasan</p>
+  </div>
+</footer>
+
+</body>
+</html>
