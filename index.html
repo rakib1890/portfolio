@@ -48,7 +48,7 @@
 
   /* Hero flow: the real stages of the Contract Clause Risk Flagger workflow */
   .flow { margin-top: 48px; overflow-x: auto; padding-bottom: 8px; }
-  .flow ol { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; min-width: 760px; }
+  .flow ol { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; min-width: max-content; }
   .flow li {
     background: var(--panel); border: 2px solid var(--ink); border-radius: 10px;
     padding: 10px 12px; font-size: 0.85rem; font-weight: 600; text-align: center; white-space: nowrap;
@@ -111,14 +111,14 @@
 
     <figure class="flow" aria-label="Stages of the Contract Clause Risk Flagger workflow" style="margin-left:0;margin-right:0;">
       <ol>
-        <li>Webhook upload</li>
-        <li>Virus scan</li>
-        <li>Text extraction</li>
-        <li>Language check</li>
-        <li class="ai">LLM clause analysis</li>
-        <li>Risk score</li>
-        <li>Report to Drive</li>
-        <li class="alert">Gmail alert</li>
+        <li>Upload</li>
+        <li>Scan</li>
+        <li>Extract</li>
+        <li>Language</li>
+        <li class="ai">LLM analysis</li>
+        <li>Score</li>
+        <li>Report</li>
+        <li class="alert">Alert</li>
       </ol>
       <figcaption>One real workflow from my work below: a contract goes in, a risk report comes out.</figcaption>
     </figure>
@@ -156,9 +156,36 @@
       </article>
 
       <!-- TO BE CONFIRMED: copy the <article> above for each new project. Only write what is true and tested. -->
-      <article class="project tbc">
-        <h3>Project 2: TO BE CONFIRMED</h3>
-        <p class="sub">Name, one-line summary, screenshot, tools and demo link to be added.</p>
+      <article class="project">
+        <h3>RAG Email Support Agent</h3>
+        <p class="sub">An email support agent that answers customer questions from a company knowledge base, and sends nothing until a human approves.</p>
+
+        <img src="images/rag-email-agent.png" alt="n8n canvas of the Customer Support Agent workflow: Gmail trigger, email data extraction, AI agent with a knowledge base tool, send-and-wait approval, an If check and a Gmail reply">
+        <p class="caption">The live support workflow in n8n.</p>
+
+        <dl>
+          <dt>Problem</dt>
+          <dd>Support teams answer the same questions about pricing, billing, accounts and policies again and again.</dd>
+          <dt>What it does</dt>
+          <dd>A Gmail trigger picks up unread emails that carry a support label. A code step cleans each message into sender, subject and body. An AI agent searches the knowledge base for the four most relevant passages, drafts a reply using only what it found, and escalates politely when the answer is not there. The draft goes to a reviewer by email with Approve and Decline buttons. On approval, the reply is sent in the same email thread. On decline, nothing is sent.</dd>
+          <dt>Knowledge base</dt>
+          <dd>A separate one-time ingestion workflow loads a PDF from Google Drive, splits it into overlapping 1,000-character chunks, embeds them with Gemini, and stores them in Supabase. The demo knowledge base covers a sample SaaS product called TaskFlow Pro: plans and pricing, billing, account and technical FAQs, refund policy, security and escalation.</dd>
+          <dt>Built with</dt>
+          <dd>n8n, Google Gemini (chat model and gemini-embedding-001 embeddings), Supabase pgvector with a match_documents SQL function, Gmail API, n8n AI Agent, Send and Wait for Response (human approval)</dd>
+          <dt>Limits</dt>
+          <dd>Answers come only from the knowledge base, so account-specific questions still need a person. Every reply waits for approval, which trades speed for safety.</dd>
+          <dt>Status</dt>
+          <dd>Tested end to end.</dd>
+        </dl>
+
+        <img src="images/rag-knowledge-base-ingestion.png" alt="n8n canvas of the Knowledge Base Ingestion workflow: manual trigger, Google Drive download, text splitter, Gemini embeddings and Supabase vector store" style="margin-top:24px">
+        <p class="caption">The ingestion workflow that fills the knowledge base.</p>
+
+        <div class="links">
+          <!-- TO BE CONFIRMED: real demo video and GitHub links, or delete these two lines -->
+          <a href="#">Demo video (TO BE CONFIRMED)</a>
+          <a href="#">GitHub (TO BE CONFIRMED)</a>
+        </div>
       </article>
 
       <article class="project tbc">
