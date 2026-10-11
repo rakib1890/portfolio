@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects | Md Rokibul Hasan</title>
+<meta name="description" content="Contract risk analysis API, RAG email support agent and an MCP travel assistant, all built in n8n.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <strong>Md Rokibul Hasan</strong>
+    <nav aria-label="Main"><a href="index.html">Home</a><a href="projects.html" aria-current="page">Projects</a><a href="about.html">About</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap pagehead"><h1>Projects</h1><p class="lead" style="color:var(--muted)">Three n8n automations, each with its workflow, what it does and where it stops.</p></div>
+  <section style="border-top:0">
+    <div class="wrap">
+      <article class="project" id="contract">
+        <h3>Contract Clause Risk Flagger</h3>
+        <p class="sub">An API that reads a contract, scores the risk of each clause, and alerts you when the risk is high.</p>
+
+        <img src="images/contract-clause-risk-flagger.png" alt="n8n canvas showing the Contract Clause Risk Flagger workflow, from the upload webhook to the final response">
+        <p class="caption">The full workflow in n8n.</p>
+
+        <dl>
+          <dt>Problem</dt>
+          <dd>Reviewing contracts by hand is slow, and risky clauses are easy to miss.</dd>
+          <dt>What it does</dt>
+          <dd>Receives a contract through a webhook, extracts and cleans the text, detects the language and translates to English when needed, pulls out key details such as type, parties, dates and jurisdiction, then splits the contract into clauses. An LLM rates each clause, a scoring step calculates the overall risk, and the result is saved as an HTML report in Google Drive, written to an audit log, and returned as a JSON response. A Gmail alert goes out for HIGH or CRITICAL results.</dd>
+          <dt>Built with</dt>
+          <dd>n8n, Groq LLM, Google Drive, Gmail, webhooks, REST APIs, JavaScript, JSON</dd>
+        </dl>
+
+        <div class="sample">
+          <strong>Sample test run:</strong> 9 clauses analyzed, overall risk CRITICAL (score 88.33). The highest-risk clause was Limitation of Liability. This is one test execution, shown to demonstrate the output format.
+        </div>
+      </article>
+
+      <article class="project" id="rag">
+        <h3>RAG Email Support Agent</h3>
+        <p class="sub">An email support agent that answers customer questions from a company knowledge base, and sends nothing until a human approves.</p>
+
+        <img src="images/rag-email-agent.png" alt="n8n canvas of the Customer Support Agent workflow: Gmail trigger, email data extraction, AI agent with a knowledge base tool, send-and-wait approval, an If check and a Gmail reply">
+        <p class="caption">The live support workflow in n8n.</p>
+
+        <dl>
+          <dt>Problem</dt>
+          <dd>Support teams answer the same questions about pricing, billing, accounts and policies again and again.</dd>
+          <dt>What it does</dt>
+          <dd>A Gmail trigger picks up unread emails that carry a support label. A code step cleans each message into sender, subject and body. An AI agent searches the knowledge base for the four most relevant passages, drafts a reply using only what it found, and escalates politely when the answer is not there. The draft goes to a reviewer by email with Approve and Decline buttons. On approval, the reply is sent in the same email thread. On decline, nothing is sent.</dd>
+          <dt>Knowledge base</dt>
+          <dd>A separate one-time ingestion workflow loads a PDF from Google Drive, splits it into overlapping 1,000-character chunks, embeds them with Gemini, and stores them in Supabase. The demo knowledge base covers a sample SaaS product called TaskFlow Pro: plans and pricing, billing, account and technical FAQs, refund policy, security and escalation.</dd>
+          <dt>Built with</dt>
+          <dd>n8n, Google Gemini (chat model and gemini-embedding-001 embeddings), Supabase pgvector with a match_documents SQL function, Gmail API, n8n AI Agent, Send and Wait for Response (human approval)</dd>
+          <dt>Limits</dt>
+          <dd>Answers come only from the knowledge base, so account-specific questions still need a person. Every reply waits for approval, which trades speed for safety.</dd>
+          <dt>Status</dt>
+          <dd>Tested end to end.</dd>
+        </dl>
+
+        <img src="images/rag-knowledge-base-ingestion.png" alt="n8n canvas of the Knowledge Base Ingestion workflow: manual trigger, Google Drive download, text splitter, Gemini embeddings and Supabase vector store" style="margin-top:24px">
+        <p class="caption">The ingestion workflow that fills the knowledge base.</p>
+      </article>
+
+      <article class="project" id="travel">
+        <h3>AI Travel Assistant (MCP)</h3>
+        <p class="sub">A travel-planning AI agent that calls live tools through the Model Context Protocol (MCP) and keeps conversation memory.</p>
+
+        <img src="images/travel-assistant-main.png" alt="n8n canvas of the Travel Assistant workflow: webhook, AI agent with Groq chat model, memory and MCP client tool, and a webhook response">
+        <p class="caption">The agent workflow in n8n.</p>
+
+        <dl>
+          <dt>Problem</dt>
+          <dd>An AI model only knows its training data, so on its own it cannot give live weather or current exchange rates.</dd>
+          <dt>What it does</dt>
+          <dd>A webhook receives a travel question. An AI agent (Groq, Llama 4 Scout) decides which tools it needs, calls each at most once through an MCP client, and answers in short sections: weather, itinerary, hotels, restaurants, practical tips, and currency info for international trips only. Memory keeps the last 10 messages.</dd>
+          <dt>MCP server</dt>
+          <dd>A separate n8n workflow exposes five tools: weather (wttr.in), hotels, restaurants and attractions (OpenStreetMap Nominatim place search) and currency rates (open.er-api.com).</dd>
+          <dt>Challenges</dt>
+          <dd>Early versions kept retrying tools until the iteration limit; explicit tool rules in the system prompt fixed that. The weather tool first failed because of extra query parameters and unparsed JSON; cleaning up the HTTP request fixed it.</dd>
+          <dt>Built with</dt>
+          <dd>n8n, Model Context Protocol (MCP Server Trigger and MCP Client Tool), Groq, Simple Memory, webhooks, REST APIs</dd>
+          <dt>Limits</dt>
+          <dd>Hotel, restaurant and attraction results are places from OpenStreetMap, so they show no prices or availability. In this version the memory is shared by all sessions.</dd>
+        </dl>
+
+        <img src="images/travel-assistant-mcp-server.png" alt="n8n canvas of the MCP Server workflow with five tools: weather, hotel, restaurant, tourist attraction and currency" style="margin-top:24px">
+        <p class="caption">The MCP server workflow with its five tools.</p>
+      </article>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <p><a href="mailto:rokibulhasan121890@gmail.com">Email</a> &middot; <a href="https://linkedin.com/in/md-rokibul-hasan-174a14210">LinkedIn</a> &middot; <a href="https://github.com/rakib1890">GitHub</a></p>
+    <p class="caption">&copy; Md Rokibul Hasan</p>
+  </div>
+</footer>
+</body>
+</html>
